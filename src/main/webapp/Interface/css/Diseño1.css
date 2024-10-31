@@ -1,0 +1,149 @@
+
+.primary-color {
+    background-color: #e6c6e2; 
+}
+
+.secundary-color {
+    background-color: #866383; 
+}
+
+.K-btn {
+    background-color: #866383; /* Color de fondo inicial */
+    color: #ffffff; /* Color de letra inicial */
+    border: none; /* Sin borde */
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de letra */
+    border-radius: 0.25rem; /* Borde redondeado */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.K-btn:hover, .K-btn:focus {
+    background-color: #e6c6e2; /* Color de fondo al pasar el cursor o presionar */
+    color: #866383; /* Color de letra al pasar el cursor o presionar */
+    outline: none; /* Sin contorno al enfocarse */
+}
+
+.border-primarycolor {
+    border:2px solid #866383 !important;
+}
+
+.navbar{
+    position: relative;
+    height: 80px;
+}
+
+.login-button{
+    background-color: rgb(255, 255, 255);
+    color: rgb(78, 99, 112);
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s background-color;
+    border-radius: 20px;
+}
+
+.login-button:hover{
+    background-color: rgb(207, 207, 207);
+}
+
+.navbar-toggler{
+    border:none;
+}
+.navbar-toggler:focus, .btn-close:focus{
+    box-shadow:none;
+    outline:none;
+}
+
+.MainFondo{
+    position: relative;
+}
+
+.fondo-color {
+    overflow: hidden; 
+}
+
+
+
+
+@media(min-width: 991px){ 
+.nav-link{
+    color:rgb(255, 255, 255);
+    font-weight: 500;
+    position: relative;
+ }
+ 
+ .nav-link:hover, .nav-link.active{
+    color:rgb(124, 63, 91);;
+}
+
+.nav-link::before{
+    content:"";
+    position: absolute;
+    bottom:0;
+    left:50%;
+    transform: translate(-50%);
+    width:0;
+    height: 2px;
+    background-color: rgb(124, 63, 91);
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover::before, .nav-link.active::before{
+    width: 100%;
+    visibility: visible;
+ }
+}
+
+
+.container{
+    position: relative;
+    box-sizing: border-box;
+}
+.bg{
+    background-image: url(ImagenesInterface/labiales.jpg);
+    background-position: center center;
+}
+
+.banner {
+    margin-top: 120px; /* Separación del header */
+    height: 300px; /* Ajusta según sea necesario */
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.banner-img {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 100%; /* Mantiene la proporción de la imagen */
+    display: block; /* Asegura que no haya espacio debajo de la imagen */
+}
+
+
+.article {
+    width: 100%;
+    height: 40px; /* Aumenta el alto del contenedor */
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    background-color: rgb(235, 184, 238);
+}
+
+/* Estilos del texto animado */
+.article p {
+    display: inline-block;
+    padding-left: 0%; /* Empieza fuera del contenedor */
+    animation: marquee 15s linear infinite; /* Animación continua */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(78, 14, 14); /* Color del texto blanco */
+    font-size: 20px; /* Aumenta el tamaño del texto */
+    padding-right: 50px; /* Espacio adicional al final de cada frase */
+}
+
+/* Animación de deslizamiento */
+@keyframes marquee {
+    from {
+        transform: translateX(10%); /* Empieza desde el lado derecho */
+    }
+    to {
+        transform: translateX(-100%); /* Se mueve completamente hacia la izquierda */
+    }
+}
