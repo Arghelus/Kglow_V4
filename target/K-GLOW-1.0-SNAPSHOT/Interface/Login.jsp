@@ -54,7 +54,7 @@
                             <i class="bi bi-person-circle" style="font-size: 2rem; color:white;"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="login.html">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="Login.jsp">Iniciar Sesion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,16 +72,16 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav ms-5 justify-content-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="index.html">TODO</a>
+                                <a class="nav-link mx-lg-2" href="Principal.jsp">TODO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="ojos.html">OJOS</a>
+                                <a class="nav-link mx-lg-2" href="Ojos.jsp">OJOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="rostro.html">ROSTRO</a>
+                                <a class="nav-link mx-lg-2" href="Rostro.jsp">ROSTRO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="labios.html">LABIOS</a>
+                                <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
@@ -114,8 +114,8 @@
                         <h1 class="fw-bold text-center">INICIAR SESIÓN
                     </h2>
                     <!--Login-->
-                    <form action="#">
-                        <div class="mb-4">
+                    <form method="POST" action="${pageContext.request.contextPath}/LoginUsuarioServlet">
+                        <div class="mb-4" >
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" name="email">
                         </div>
@@ -131,7 +131,7 @@
                         <div class="row align-items-center">
                             <!-- Columna del texto -->
                             <div class="col-md-6">
-                                <span>No tienes cuenta? <a href="register.html">Registrate</a></span><br>
+                                <span>No tienes cuenta? <a href="Register.jsp">Registrate</a></span><br>
                                 <span><a href="#">Recuperar Contraseña</a></span>
                             </div>
                             <!-- Columna del botón -->

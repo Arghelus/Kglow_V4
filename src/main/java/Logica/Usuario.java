@@ -1,27 +1,41 @@
 package Logica;
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Usuario implements Serializable {
     @Id 
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    // Atributos de la clase Usuario segun el UML
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
+    
+    @NotNull
     private String nombreUsuario;
+    
+    @NotNull
     private String apellido;
+    
+    @NotNull
+    @Email
     private String correo;
+    
+    @NotNull
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String contrasenia;
+    
     private String telefono;
     private String direccion;
     private String tipoRol;
 
-    public Usuario(int id_usuario, String nombreUsuario, String apellido, String correo, String contrasenia, String telefono, String direccion, String tipoRol) {
-        this.id_usuario = id_usuario;
+    // Constructor vacío para JPA
+    public Usuario() {}
+
+    public Usuario(String nombreUsuario, String apellido, String correo, String contrasenia, String telefono, String direccion, String tipoRol) {
         this.nombreUsuario = nombreUsuario;
         this.apellido = apellido;
         this.correo = correo;
@@ -31,6 +45,7 @@ public class Usuario implements Serializable {
         this.tipoRol = tipoRol;
     }
 
+    // Getters y Setters
     public int getId_usuario() {
         return id_usuario;
     }
@@ -95,8 +110,16 @@ public class Usuario implements Serializable {
         this.tipoRol = tipoRol;
     }
 
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id_usuario=" + id_usuario +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", tipoRol='" + tipoRol + '\'' +
+                '}';
+    }
 }
-

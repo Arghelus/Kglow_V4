@@ -6,7 +6,7 @@
     <!-- Metadatos y enlaces de estilo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KGLOW - INICIO</title>
+    <title>KGLOW - PAGO</title>
     <!-- Enlaces a Bootstrap CSS y otros estilos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -61,6 +61,29 @@
             }
         }
     </style>
+    <script>
+        // Validación de solo letras para nombre y apellido
+        function validarTexto(event) {
+            const char = String.fromCharCode(event.which);
+            if (!/[a-zA-Z\s]/.test(char)) {
+                event.preventDefault();
+            }
+        }
+        //Validación de solo numeros para celular
+        function validarNumero(event) {
+            const char = String.fromCharCode(event.which);
+            if (!/[0-9]/.test(char)) {
+                event.preventDefault();
+            }
+        }
+        function limitarLongitud(event, input, maxLength) {
+            // Se detalla que no se puede superar el maxLength establecidos en los parametros al llamar a la funcion
+            if (input.value.length >= maxLength) {
+            //Bloquea la entrada de caracteres cuando se excede el límite de longitud.    
+            event.preventDefault();
+    }
+}
+    </script>
 </head>
 
 <body>
@@ -166,23 +189,26 @@
                 <div class="container my-5">
                     <div class="form-section">
                         <h4>Datos Para Envío</h4>
-                        <form>
+                        <form method="POST" action="${pageContext.request.contextPath}/RegistrarDatosEnvioServlet">
                             <!-- Campos del formulario -->
                             <div class="form-group icon-input-group">
                                 <i class="bi bi-person"></i>
-                                <input type="text" class="form-control" placeholder="NOMBRES Y APELLIDOS">
+                                <input type="text" class="form-control" name="NOMBRES Y APELLIDOS" id="NOMBRES Y APELLIDOS" placeholder="NOMBRES Y APELLIDOS"
+                                       pattern="[A-Za-z\s]+" title="Solo letras" required onkeypress="validarTexto(event)">
                             </div>
                             <div class="row mt-3">
                                 <div class="col-6">
                                     <div class="form-group icon-input-group">
                                         <i class="bi bi-credit-card"></i>
-                                        <input type="text" class="form-control" placeholder="DNI">
+                                        <input type="text" class="form-control" name="DNI" placeholder="DNI"
+                                                pattern="\d{8}" title="Debe contener 8 dígitos numéricos" required onkeypress="validarNumero(event); limitarLongitud(event, this, 8)">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group icon-input-group">
                                         <i class="bi bi-telephone"></i>
-                                        <input type="text" class="form-control" placeholder="CELULAR">
+                                        <input type="text" class="form-control" name="CELULAR" placeholder="CELULAR"
+                                               pattern="\d{9}" title="Debe contener 9 dígitos numéricos" required onkeypress="validarNumero(event); limitarLongitud(event, this, 9)"">
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +292,7 @@
                                 <h5>Detalles de PayPal</h5>
                                 <div class="form-group">
                                     <label for="paypalEmail">Correo Electrónico de PayPal</label>
-                                    <input type="email" class="form-control" id="paypalEmail"
+                                    <input type="email" class="form-control" name="paypalEmail" id="paypalEmail"
                                         placeholder="correo@ejemplo.com">
                                 </div>
                             </div>
@@ -275,23 +301,25 @@
                                 <h5>Detalles de Tarjeta de Crédito o Débito</h5>
                                 <div class="form-group">
                                     <label for="nombreTarjeta">Nombre en la Tarjeta</label>
-                                    <input type="text" class="form-control" id="nombreTarjeta"
-                                        placeholder="Nombre completo">
+                                    <input type="text" class="form-control" name="nombreTarjeta" id="nombreTarjeta"
+                                        placeholder="Nombre completo" onkeypress="validarTexto(event)">
                                 </div>
                                 <div class="form-group">
                                     <label for="numeroTarjeta">Número de Tarjeta</label>
-                                    <input type="text" class="form-control" id="numeroTarjeta"
-                                        placeholder="XXXX - XXXX - XXXX - XXXX">
+                                    <input type="text" class="form-control" name="numeroTarjeta" id="numeroTarjeta"
+                                        placeholder="XXXX - XXXX - XXXX - XXXX" pattern="\d{16}" title="Debe contener 16 dígitos numéricos" required
+                                        onkeypress="validarNumero(event); limitarLongitud(event, this, 16)">
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="fechaVencimiento">Fecha de Vencimiento</label>
-                                        <input type="text" class="form-control" id="fechaVencimiento"
-                                            placeholder="MM/AA">
+                                        <input type="month" class="form-control" name="fechaVencimiento" id="fechaVencimiento"
+                                            placeholder="MM/AA" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="cvv">CVV</label>
-                                        <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                        <input type="text" class="form-control" name="CVV" id="cvv" placeholder="CVV"
+                                               pattern="\d{3}" title="Debe contener 3 dígitos numéricos" required onkeypress="validarNumero(event); limitarLongitud(event, this, 3)">
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +329,7 @@
                                 <div class="form-group">
                                     <label for="telefonoBilletera">Número de Teléfono Asociado</label>
                                     <input type="text" class="form-control" id="telefonoBilletera"
-                                        placeholder="Número de teléfono">
+                                        placeholder="Número de teléfono" required onkeypress="validarNumero(event); limitarLongitud(event, this, 9)">
                                 </div>
                             </div>
 

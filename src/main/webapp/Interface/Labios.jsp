@@ -46,7 +46,7 @@
                             <i class="bi bi-person-circle" style="font-size: 2rem; color:white;"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="login.html">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="Login.jsp">Iniciar Sesion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,16 +64,16 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav ms-5 justify-content-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="index.html">TODO</a>
+                                <a class="nav-link mx-lg-2" href="Principal.jsp">TODO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="ojos.html">OJOS</a>
+                                <a class="nav-link mx-lg-2" href="Ojos.jsp">OJOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="rostro.html">ROSTRO</a>
+                                <a class="nav-link mx-lg-2" href="Rostro.jsp">ROSTRO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="labios.html">LABIOS</a>
+                                <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
