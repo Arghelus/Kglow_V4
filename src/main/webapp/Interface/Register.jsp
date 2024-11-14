@@ -18,6 +18,36 @@
             background-position: center center;
 
     </style> 
+    <script>
+        // Validación de coincidencia de contraseñas
+        function validarFormulario() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                document.getElementById("passwordMatchError").style.display = "block";
+                return false;
+            } else {
+                document.getElementById("passwordMatchError").style.display = "none";
+            }
+            return true;
+        }
+
+        // Validación de solo letras para nombre y apellido
+        function validarTexto(event) {
+            const char = String.fromCharCode(event.which);
+            if (!/[a-zA-Z\s]/.test(char)) {
+                event.preventDefault();
+            }
+        }
+        //Validación de solo numeros para celular
+        function validarNumero(event) {
+            const char = String.fromCharCode(event.which);
+            if (!/[0-9]/.test(char)) {
+                event.preventDefault();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -55,7 +85,7 @@
                             <i class="bi bi-person-circle" style="font-size: 2rem; color:white;"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="login.php">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="Login.jsp">Iniciar Sesion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -73,16 +103,16 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav ms-5 justify-content-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="index.php">TODO</a>
+                                <a class="nav-link mx-lg-2" href="Principal.jsp">TODO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="modaH.php">OJOS</a>
+                                <a class="nav-link mx-lg-2" href="Ojos.jsp">OJOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="modaM.php">ROSTRO</a>
+                                <a class="nav-link mx-lg-2" href="Rostro.jsp">ROSTRO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="acercaDe.php">LABIOS</a>
+                                <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-2" href="sucursales.php">SERVICIOS</a>
@@ -115,15 +145,15 @@
                     </div>
                     <h2 class="fw-bold text-center py-5">Registrate </h2>
                     <!--Login-->
-                    <form action="#">
-
+                    <!--el simbolo del dolar y su complemento es necesario para encontrar la ubicaccion del Servlet registrarUsuario-->
+                    <form method="POST" action="${pageContext.request.contextPath}/RegistrarUsuarioServlet" onsubmit="return validarFormulario()">
                         <div class="mb-3">
                             <label for="nombres" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" name="nombres" id="nombres" required>
+                            <input type="text" class="form-control" name="nombres" id="nombres"  required onkeypress="validarTexto(event)">
                         </div>
                         <div class="mb-3">
                             <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" name="apellidos" id="apellidos" required>
+                            <input type="text" class="form-control" name="apellidos" id="apellidos" required onkeypress="validarTexto(event)">
                         </div>
                         <div class="mb-3">
                             <label for="direccion" class="form-label">Dirección de Domicilio</label>
@@ -131,11 +161,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="celular" class="form-label">Celular</label>
-                            <input type="text" class="form-control" id="celular" name="celular" required maxlength="9"
-                                pattern="\d{9}" title="Ingrese 9 dígitos numéricos" aria-describedby="celularHelp">
+                            <input type="tel" class="form-control" id="celular" name="celular" required maxlength="9"  onkeypress="validarNumero(event)"
+                               pattern="\d{9}" title="Ingrese exactamente 9 dígitos numéricos" 
+                               aria-describedby="celularHelp" inputmode="number" >
                             <div id="celularHelp" class="form-text">Ingrese exactamente 9 dígitos numéricos.</div>
                             <div class="invalid-feedback">
-                                Los numeros de celular deben tener exactamente 9 dígitos numéricos.
+                            El número de celular debe tener exactamente 9 dígitos numéricos.
                             </div>
                         </div>
                         <div class="mb-3">
@@ -144,16 +175,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password" required>
+                            <input type="password" class="form-control" name="password" id="password" required maxlength="8">
                             <div class="invalid-feedback">
                                 La contraseña debe tener entre 8 y 20 caracteres, contener unicamente letras y números.
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="confirm-password" class="form-label">Confirme Contraseña</label>
-                            <input type="password" class="form-control" name="confirm-password" id="confirm-password"
-                                required>
-                            <div class="invalid-feedback"> Las contraseñas no coinciden</div>
+                            <input type="password" class="form-control" name="confirm-password" id="confirm-password" required>
+                             <div id="passwordMatchError" class="invalid-feedback" style="display: none;">Las contraseñas no coinciden</div>
                         </div>
 
                         <div class="mb-3 form-check">
@@ -165,11 +195,11 @@
                         </div>
 
                         <div class="my-3">
-                            <span>Ya tengo cuenta. <a href="login.html">Iniciar sesión.</a></span><br>
+                            <span>Ya tengo cuenta. <a href="Login.jsp">Iniciar sesión.</a></span><br>
                         </div>
 
                     </form>
-
+                        
                     <!--LOgin con Redes Sociales-->
                     <div class="container w-100 my-5">
                         <div class="row text-center">
