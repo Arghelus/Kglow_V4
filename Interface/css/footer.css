@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.footer {
+    margin-top: 40px;
+    width: 100%;
+    background-color: #e6c6e2; 
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+	color:#10394e;
+}
+
+.carousel-indicators{
+	margin-top: none;
+}
+.container-footer {
+    display: flex;
+	flex-direction: column;
+	gap: 2px;
+    padding-inline: 10rem;
+    padding-top:2rem;
+}
+
+.menu-footer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr) 30rem;
+	gap: 3rem;
+	justify-items: center;
+}
+
+.title-footer {
+	font-weight: 600;
+	font-size: 100%;
+	text-transform: uppercase;
+	color: #774d72;  /* Cambio de color a blanco */
+}
+
+.contact-info,
+.information,
+.my-account,
+.newsletter {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.contact-info ul,
+.information ul,
+.my-account ul {
+    list-style: none;
+    padding-left: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.contact-info ul li,
+.information ul li,
+.my-account ul li {
+	list-style: none;
+	color: #774d72; /* Cambio de color a blanco */
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.information ul li a,
+.my-account ul li a {
+    font-size:12px;
+	text-decoration: none;
+	color: #774d72; /* Cambio de color a blanco */
+	font-weight: 300;
+    gap: 2px;
+}
+
+/* Eliminamos el subrayado de todos los enlaces */
+a {
+    text-decoration: none;
+}
+
+.social-icons {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.social-icons span {
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.social-icons span i {
+	color: #ffffff; 
+	font-size: 1.2rem;
+}
+
+.facebook {
+	background-color: #3b5998;
+}
+
+.twitter {
+	background-color: #00acee;
+}
+
+.youtube {
+	background-color: #c4302b;
+}
+
+.pinterest {
+	background-color: #c8232c;
+}
+
+.instagram {
+	background: linear-gradient(
+		#405de6,
+		#833ab4,
+		#c13584,
+		#e1306c,
+		#fd1d1d,
+		#f56040,
+		#fcaf45
+	);
+}
+
+.content p {
+	font-size: 12px;
+	color: #774d72; 
+	font-weight: 300;
+}
+
+.content input {
+	outline: none;
+	background: #1f1e1e; /* Fondo blanco */
+	border: 2px solid #774d72;  /* Borde blanco */
+	padding: 0.5rem 0 1.2rem;
+	color: #774d72;  /* Texto negro */
+	display: block;
+	margin-bottom: 3rem;
+	margin-top: 2rem;
+	width: 100%;
+	font-family: inherit;
+	transition: border-color 0.5s ease; /* Animación de cambio de color de borde */
+}
+
+.content input::-webkit-input-placeholder {
+	color: #774d72; 
+}
+
+.content input:focus {
+    border-color: #b6b6b6; /* Color de borde al enfocar */
+    background-color: #774d72;  /* Fondo blanco */
+    color: #000000; /* Texto negro */
+}
+
+.content button {
+	border: none;
+	background-color: #774d72;  /* Fondo blanco */
+	color: #000; /* Texto negro */
+	text-transform: uppercase;
+	padding: 1rem 3rem;
+	border-radius: 2rem;
+	font-size: 1.4rem;
+	font-family: inherit;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.content button:hover {
+	background-color: #0049d1; /* Fondo azul océano */
+	color:#3a1f37;  /* Texto en blanco */
+}
+
+.copyright {
+    padding:2rem;
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid #774d72; 
+}
+
+.content input::placeholder {
+    color: #7a7a7a; /* Color del texto de la indicación */
+}
+
+.copyright p {
+	font-weight: 400;
+	font-size: 12px;
+	color: #774d72;  /* Cambio de color a blanco */
+}
+.error-message {
+	color: rgb(255, 73, 18);
+	font-size: 16 px;
+	margin-top: 1.0rem;
+}
+
+#paymentImage {
+    max-width: auto;
+    height: 100%;
+}
+
+
+@media only screen and (max-width: 1400px) {
+    .menu-footer {
+        grid-template-columns: repeat(2, 1fr); /* Cambio a 3 columnas */
+        grid-template-rows: auto auto; /* 2 filas */
+    }
+
+	.menu-footer {
+        justify-content: center;
+	}
+}
+
+
+@media only screen and (max-width: 1000px) {
+	.container-footer {
+		padding-inline: 5rem;
+	}
+	.menu-footer {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto auto; /* Cambio a 2 filas */
+	}
+}
+
+/* Para pantallas de hasta 576px */
+@media only screen and (max-width: 600px) {
+	.container-footer {
+		padding-inline: 2rem;
+	}
+	.menu-footer {
+		grid-template-columns: 1fr; /* Cambio a 1 columna */
+		grid-template-rows: repeat(4, auto); /* Cambio a 4 filas */
+	}
+}
