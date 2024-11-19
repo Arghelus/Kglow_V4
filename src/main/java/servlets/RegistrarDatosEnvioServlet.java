@@ -27,7 +27,6 @@ public class RegistrarDatosEnvioServlet extends HttpServlet {
     String numeroContacto = request.getParameter("CELULAR");
     String nombreTarjeta = request.getParameter("nombreTarjeta");
     String numeroTarjeta = request.getParameter("numeroTarjeta");
-    String fechaVencimiento = request.getParameter("fechaVencimiento");
     String cvv = request.getParameter("CVV");
 
     // Expresiones regulares para cada campo

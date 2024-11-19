@@ -11,15 +11,20 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_producto;
-    private String nombre;
+    private String nombre_producto;
     private String descripcion;
     private double precio;
     private String marca;
     private String categoria;
 
+    public Producto() {
+    }
+    
+    
+
     public Producto(int id_producto, String nombre, String descripcion, double precio, String marca, String categoria) {
         this.id_producto = id_producto;
-        this.nombre = nombre;
+        this.nombre_producto = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.marca = marca;
@@ -34,12 +39,12 @@ public class Producto {
         this.id_producto = id_producto;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_producto() {
+        return nombre_producto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
     }
 
     public String getDescripcion() {

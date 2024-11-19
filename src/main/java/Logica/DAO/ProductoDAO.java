@@ -1,77 +1,137 @@
 package Logica.DAO;
 
 import Logica.Producto;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
+
 public class ProductoDAO {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("K-GLOW_PU");
-
     // Método para obtener todos los productos
-    public List<Producto> obtenerTodosLosProductos() {
-        EntityManager em = emf.createEntityManager();
-        List<Producto> productos = null;
-        try {
-            Query query = em.createQuery("SELECT p FROM Producto p");
-            productos = query.getResultList();
-        } finally {
-            em.close();
+public List<Producto> obtenerTodosLosProductos() {
+    List<Producto> productos = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+
+    try {
+        // Registra el controlador
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        // Establece la conexión
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
+        String sql = "SELECT * FROM Productos";
+        stmt = conn.prepareStatement(sql);
+        rs = stmt.executeQuery();
+
+        // Procesa el resultado de la consulta
+        while (rs.next()) {
+            Producto producto = new Producto();
+            producto.setId_producto(rs.getInt("id_producto"));
+            producto.setNombre_producto(rs.getString("nombre_producto"));
+            producto.setDescripcion(rs.getString("descripcion"));
+            producto.setPrecio(rs.getDouble("precio"));
+            producto.setMarca(rs.getString("marca"));
+            producto.setCategoria(rs.getString("id_categoria"));
+            productos.add(producto);
         }
-        return productos;
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
+    } finally {
+        // Cierra los recursos en orden inverso al que fueron abiertos
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+    return productos;
+}
 
     // Método para agregar un nuevo producto
     public void agregarProducto(Producto producto) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(producto);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
+        String sql = "INSERT INTO Productos (nombre_producto, descripcion, precio, marca, id_categoria) VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, producto.getNombre_producto());
+            ps.setString(2, producto.getDescripcion());
+            ps.setDouble(3, producto.getPrecio());
+            ps.setString(4, producto.getMarca());
+            ps.setString(5, producto.getCategoria());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     // Método para buscar producto por ID
     public Producto buscarProductoPorId(int id) {
-        EntityManager em = emf.createEntityManager();
         Producto producto = null;
-        try {
-            producto = em.find(Producto.class, id);
-        } finally {
-            em.close();
+        String sql = "SELECT * FROM Productos WHERE id_producto = ?";
+        
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    producto = new Producto();
+                    producto.setId_producto(rs.getInt("id_producto"));
+                    producto.setNombre_producto(rs.getString("nombre_producto"));
+                    producto.setDescripcion(rs.getString("descripcion"));
+                    producto.setPrecio(rs.getDouble("precio"));
+                    producto.setMarca(rs.getString("marca"));
+                    producto.setCategoria(rs.getString("id_categoria"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return producto;
     }
 
     // Método para actualizar un producto existente
     public void actualizarProducto(Producto producto) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.merge(producto);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
+        String sql = "UPDATE Productos SET nombre_producto = ?, descripcion = ?, precio = ?, marca = ?, id_categoria = ? WHERE id_producto = ?";
+        
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, producto.getNombre_producto());
+            ps.setString(2, producto.getDescripcion());
+            ps.setDouble(3, producto.getPrecio());
+            ps.setString(4, producto.getMarca());
+            ps.setString(5, producto.getCategoria());
+            ps.setInt(6, producto.getId_producto());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     // Método para eliminar un producto por ID
     public void eliminarProducto(int id) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Producto producto = em.find(Producto.class, id);
-            if (producto != null) {
-                em.remove(producto);
-            }
-            em.getTransaction().commit();
-        } finally {
-            em.close();
+        String sql = "DELETE FROM Productos WHERE id_producto = ?";
+        
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -7,7 +7,6 @@
     <class>Logica.Carrito</class>
     <class>Logica.Comprobante</class>
     <class>Logica.Envio</class>
-    <class>Logica.Factura</class>
     <class>Logica.Login</class>
     <class>Logica.Producto</class>
     <class>Logica.Venta</class>

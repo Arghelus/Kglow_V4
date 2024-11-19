@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CatalogoServlet", urlPatterns = {"/CatalogoServlet"})
 public class CatalogoServlet extends HttpServlet {
 
+    
+     private final ProductoDAO productoDAO = new ProductoDAO();
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -56,20 +60,20 @@ public class CatalogoServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductoDAO productoDAO = new ProductoDAO();
-        
-        // Obtener la lista de productos desde el DAO
-            List<Producto> listaProductos = productoDAO.obtenerTodosLosProductos();
-        
-        // Guardar la lista de productos en un atributo de la solicitud (request)
-        request.setAttribute("listaProductos", listaProductos);
-        
-        // Redirigir a la página JSP para mostrar los productos en formato de cards
-        request.getRequestDispatcher("/Interface/Productos.jsp").forward(request, response);
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        List<Producto> productos = productoDAO.obtenerTodosLosProductos();
+        if(!productos.isEmpty()){
+        System.out.println("====================================================================");
+        System.out.println(productos.get(0).getNombre_producto());
+        request.setAttribute("productos", productos);
+        request.getRequestDispatcher("/Interface/Rostro.jsp").forward(request, response);
+        } else {
+            System.out.println("NO HAY PRODUCTO HIJITO");
+        }
+    }*/
     /**
      * Handles the HTTP <code>POST</code> method.
      *

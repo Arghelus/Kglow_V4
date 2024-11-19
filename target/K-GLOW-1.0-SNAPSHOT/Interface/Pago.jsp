@@ -339,8 +339,7 @@
                                     <img src="ImagenesInterface/osito-removebg-preview.png" alt="Mascota"
                                         style="width: 160px; height: 160px;">
                                     <button type="submit" class="btn"
-                                        style="background-color: #e6c6e2; border-color: #e6c6e2; color: #fff;">Finalizar
-                                        Compra</button>
+                                        style="background-color: #e6c6e2; border-color: #e6c6e2; color: #fff;">Finalizar Compra</button>
                                 </div>
                             </div>
 
