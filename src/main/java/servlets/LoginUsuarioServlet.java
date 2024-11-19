@@ -43,8 +43,15 @@ public class LoginUsuarioServlet extends HttpServlet {
     Usuario usuarioLogueado = usuarioDAO.LoguearUsuario(usuario);
     
     if (usuarioLogueado != null) { // Verifica si el usuario fue encontrado
-        // Redirigir al inicio si el login fue exitoso
-        response.sendRedirect(request.getContextPath() + "/Interface/Principal.jsp");
+        // Obtener el rol del usuario
+            String tipoUsuario = usuarioLogueado.getTipoRol();
+
+            // Redirigir según el tipo de usuario
+            if ("Administrador".equalsIgnoreCase(tipoUsuario)) {
+                response.sendRedirect(request.getContextPath() + "/Interface/AdminPrincipal.jsp");
+            } else if ("Cliente".equalsIgnoreCase(tipoUsuario)) {
+                response.sendRedirect(request.getContextPath() + "/Interface/Principal.jsp");
+            } 
     } else {
         // Redirigir al registro si no se encontró al usuario
         response.sendRedirect(request.getContextPath() + "/Interface/Register.jsp");

@@ -28,19 +28,19 @@ public class Usuario implements Serializable {
     @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String contrasenia;
     
-    private String telefono;
+    private String celular;
     private String direccion;
     private String tipoRol;
 
     // Constructor vacío para JPA
     public Usuario() {}
 
-    public Usuario(String nombreUsuario, String apellido, String correo, String contrasenia, String telefono, String direccion, String tipoRol) {
+    public Usuario(String nombreUsuario, String apellido, String correo, String contrasenia, String celular, String direccion, String tipoRol) {
         this.nombreUsuario = nombreUsuario;
         this.apellido = apellido;
         this.correo = correo;
         this.contrasenia = contrasenia;
-        this.telefono = telefono;
+        this.celular = celular;
         this.direccion = direccion;
         this.tipoRol = tipoRol;
     }
@@ -86,12 +86,12 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
     public String getDireccion() {
@@ -117,7 +117,7 @@ public class Usuario implements Serializable {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
-                ", telefono='" + telefono + '\'' +
+                ", celular='" + celular + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", tipoRol='" + tipoRol + '\'' +
                 '}';

@@ -152,7 +152,7 @@
                                 <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="nosotros.html">NOSOTROS</a>
+                                <a class="nav-link mx-lg-2" href="Nosotros.jsp">NOSOTROS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-2" href="contacto.html">CONTACTO</a>

@@ -21,7 +21,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         String apellido = request.getParameter("apellidos");  // Cambiado
         String correo = request.getParameter("email");  // Cambiado
         String contrasenia = request.getParameter("password");  // Cambiado
-        String telefono = request.getParameter("celular");  // Cambiado
+        String celular = request.getParameter("celular");  // Cambiado
         String direccion = request.getParameter("direccion");  // Correcto
         
         //verificacion de obtencion de datos
@@ -29,7 +29,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         System.out.println(apellido);
         System.out.println(correo);
         System.out.println("=================================================================================");
-        Usuario usuario = new Usuario(nombre, apellido, correo, contrasenia, telefono, direccion, "Cliente");
+        Usuario usuario = new Usuario(nombre, apellido, correo, contrasenia, celular, direccion, "Cliente");
         System.out.println(usuario);
 
         

@@ -82,13 +82,13 @@
                                     <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
+                                    <a class="nav-link mx-lg-2" href="Servicios.jsp">SERVICIOS</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="nosotros.html">NOSOTROS</a>
+                                    <a class="nav-link mx-lg-2" href="Nosotros.jsp">NOSOTROS</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="contacto.html">CONTACTO</a>
+                                    <a class="nav-link mx-lg-2" href="Contacto.jsp">CONTACTO</a>
                                 </li>
                             </ul>
                         </div>
@@ -154,12 +154,14 @@
 
                             // Iteración sobre la lista de productos
                             for (Producto producto : productos) {
+                            // Filtrar solo los productos cuya categoría sea "rostro"
+                                if ("1".equalsIgnoreCase(producto.getCategoria())) {
                         %>
                         <div class="col">
                             <div class="card shadow-sm h-100 d-flex flex-column">
                                 <div class="overflow-hidden" style="height: 200px;">
                                     <!-- Puedes ajustar la ruta de la imagen según tus necesidades -->
-                                    <img src="ImagenesInterface/productos/<%= producto.getNombre_producto()%>.png" class="card-img-top img-fluid" alt="<%= producto.getNombre_producto()%>">
+                                    <img src="ImagenesInterface/productos/Rostro/<%= producto.getNombre_producto()%>.png" class="card-img-top img-fluid" alt="<%= producto.getNombre_producto()%>">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-marca"><%= producto.getMarca()%></h5>
@@ -170,6 +172,7 @@
                             </div>
                         </div>
                         <%
+                                }
                             }
                         %>
                     </div>

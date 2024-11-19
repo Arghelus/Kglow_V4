@@ -4,7 +4,7 @@ import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-11-01T19:00:31", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-11-19T11:48:37", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
@@ -13,8 +13,8 @@ public class Usuario_ {
     public static volatile SingularAttribute<Usuario, String> apellido;
     public static volatile SingularAttribute<Usuario, String> correo;
     public static volatile SingularAttribute<Usuario, String> direccion;
+    public static volatile SingularAttribute<Usuario, String> celular;
     public static volatile SingularAttribute<Usuario, String> contrasenia;
     public static volatile SingularAttribute<Usuario, String> nombreUsuario;
-    public static volatile SingularAttribute<Usuario, String> telefono;
 
 }

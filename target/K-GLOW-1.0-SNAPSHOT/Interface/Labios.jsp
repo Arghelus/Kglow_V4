@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="Logica.Producto"%>
+<%@page import="Logica.DAO.ProductoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,13 +79,13 @@
                                 <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
+                                <a class="nav-link mx-lg-2" href="Servicios.jsp">SERVICIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="nosotros.html">NOSOTROS</a>
+                                <a class="nav-link mx-lg-2" href="Nosotros.jsp">NOSOTROS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="contacto.html">CONTACTO</a>
+                                <a class="nav-link mx-lg-2" href="Contacto.jsp">CONTACTO</a>
                             </li>
                         </ul>
                     </div>
@@ -101,6 +104,80 @@
         </div>
     </section>
 
+    <section class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <h4>Filtros</h4>
+
+                <!-- Filtro de Tipo de Producto -->
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Producto</label>
+                    <select class="form-select" id="tipoProducto">
+                        <option value="todos">Todos</option>
+                        <option value="base">Base</option>
+                        <option value="corrector">Corrector</option>
+                        <option value="rubor">Rubor</option>
+                    </select>
+                </div>
+
+                <!-- Filtro de Precio -->
+                <div class="mb-3">
+                    <label class="form-label">Rango de Precio</label>
+                    <input type="number" class="form-control mb-2" id="precioMin" placeholder="Precio mínimo">
+                    <input type="number" class="form-control" id="precioMax" placeholder="Precio máximo">
+                </div>
+
+                <!-- Filtro de Marca -->
+                <div class="mb-3">
+                    <label class="form-label">Marca</label>
+                    <select class="form-select" id="marca">
+                        <option value="todas">Todas</option>
+                        <option value="a">Marca A</option>
+                        <option value="b">Marca B</option>
+                        <option value="c">Marca C</option>
+                    </select>
+                </div>
+
+                <button class="K-btn" onclick="filtrarProductos()">Aplicar Filtros</button>
+            </div>
+
+            <!-- Tarjetas de Productos -->
+            <div class="col-lg-9">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3" id="listaProductos">
+                    <%
+                        // Instancia de ProductoDAO y obtención de la lista de productos
+                        ProductoDAO productoDAO = new ProductoDAO();
+                        List<Producto> productos = productoDAO.obtenerTodosLosProductos();
+
+                        // Iteración sobre la lista de productos
+                        for (Producto producto : productos) {
+                            // Filtrar solo los productos cuya categoría sea "rostro"
+                            if ("2".equalsIgnoreCase(producto.getCategoria())) {
+                    %>
+                    <div class="col">
+                        <div class="card shadow-sm h-100 d-flex flex-column">
+                            <div class="overflow-hidden" style="height: 200px;">
+                                <!-- Puedes ajustar la ruta de la imagen según tus necesidades -->
+                                <img src="ImagenesInterface/productos/Labios/<%= producto.getNombre_producto()%>.png" class="card-img-top img-fluid" alt="<%= producto.getNombre_producto()%>">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-marca"><%= producto.getMarca()%></h5>
+                                <h5 class="card-title"><%= producto.getNombre_producto()%></h5>
+                                <p class="card-text">S/ <%= producto.getPrecio()%></p>
+                                <a href="#" class="K-btn">Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                    
     <footer class="footer">
         <div class="container-footer">
             <div class="menu-footer">

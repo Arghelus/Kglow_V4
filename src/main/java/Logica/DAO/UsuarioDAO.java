@@ -19,13 +19,13 @@ public class UsuarioDAO {
             // Establece la conexión
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
             
-            String sql = "INSERT INTO Usuarios (nombre, apellido, email, contraseña, telefono, direccion, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Usuarios (nombre, apellido, email, contraseña, celular, direccion, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, usuario.getNombreUsuario());
             ps.setString(2, usuario.getApellido());
             ps.setString(3, usuario.getCorreo());
             ps.setString(4, usuario.getContrasenia());
-            ps.setString(5, usuario.getTelefono());
+            ps.setString(5, usuario.getCelular());
             ps.setString(6, usuario.getDireccion());
             ps.setString(7, "Cliente");
 
@@ -74,7 +74,7 @@ public class UsuarioDAO {
             usuarioEncontrado.setApellido(rs.getString("apellido"));
             usuarioEncontrado.setCorreo(rs.getString("email"));
             usuarioEncontrado.setContrasenia(rs.getString("contraseña"));
-            usuarioEncontrado.setTelefono(rs.getString("telefono"));
+            usuarioEncontrado.setCelular(rs.getString("celular"));
             usuarioEncontrado.setDireccion(rs.getString("direccion"));
             usuarioEncontrado.setTipoRol(rs.getString("tipo_usuario"));
             return usuarioEncontrado;

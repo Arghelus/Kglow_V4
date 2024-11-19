@@ -15,6 +15,7 @@ Logica\DAO\CarritoDAO.class
 Logica\Producto_.class
 Logica\Carrito_.class
 persistencia\exceptions\PreexistingEntityException.class
+servlets\MensajeEnviado.class
 persistencia\ControladoraPersistencia.class
 Logica\Devolucion.class
 persistencia\exceptions\IllegalOrphanException.class

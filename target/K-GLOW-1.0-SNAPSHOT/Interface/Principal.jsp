@@ -78,13 +78,13 @@
                                 <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
+                                <a class="nav-link mx-lg-2" href="Servicios.jsp">SERVICIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="nosotros.html">NOSOTROS</a>
+                                <a class="nav-link mx-lg-2" href="Nosotros.jsp">NOSOTROS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="contacto.html">CONTACTO</a>
+                                <a class="nav-link mx-lg-2" href="Contacto.jsp">CONTACTO</a>
                             </li>
                         </ul>
                     </div>
@@ -199,6 +199,7 @@
             </div>
         </div>
     </div>
+    
     <footer class="footer">
         <div class="container-footer">
             <div class="menu-footer">

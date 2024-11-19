@@ -15,19 +15,23 @@ public class Producto {
     private String descripcion;
     private double precio;
     private String marca;
+    private String contenido;
+    private String origen;
+    private String tipo;
     private String categoria;
 
     public Producto() {
-    }
-    
-    
+    } 
 
-    public Producto(int id_producto, String nombre, String descripcion, double precio, String marca, String categoria) {
+    public Producto(int id_producto, String nombre, String descripcion, double precio, String marca, String contenido, String origen, String tipo, String categoria) {
         this.id_producto = id_producto;
         this.nombre_producto = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.marca = marca;
+        this.contenido = contenido;
+        this.origen = origen;
+        this.tipo = tipo;
         this.categoria = categoria;
     }
 
@@ -71,6 +75,30 @@ public class Producto {
         this.marca = marca;
     }
 
+    public String getComtenido() {
+        return contenido;
+    }
+
+    public void setComtenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public String getCategoria() {
         return categoria;
     }

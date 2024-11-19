@@ -40,6 +40,9 @@ public List<Producto> obtenerTodosLosProductos() {
             producto.setDescripcion(rs.getString("descripcion"));
             producto.setPrecio(rs.getDouble("precio"));
             producto.setMarca(rs.getString("marca"));
+            producto.setComtenido(rs.getString("contenido"));
+            producto.setOrigen(rs.getString("origen"));
+            producto.setTipo(rs.getString("tipo"));
             producto.setCategoria(rs.getString("id_categoria"));
             productos.add(producto);
         }
@@ -60,7 +63,7 @@ public List<Producto> obtenerTodosLosProductos() {
 
     // Método para agregar un nuevo producto
     public void agregarProducto(Producto producto) {
-        String sql = "INSERT INTO Productos (nombre_producto, descripcion, precio, marca, id_categoria) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Productos (nombre_producto, descripcion, precio, marca, contenido, origen, tipo, id_categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -69,7 +72,10 @@ public List<Producto> obtenerTodosLosProductos() {
             ps.setString(2, producto.getDescripcion());
             ps.setDouble(3, producto.getPrecio());
             ps.setString(4, producto.getMarca());
-            ps.setString(5, producto.getCategoria());
+            ps.setString(5, producto.getComtenido());
+            ps.setString(6, producto.getOrigen());
+            ps.setString(7, producto.getTipo());
+            ps.setString(8, producto.getCategoria());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,6 +99,9 @@ public List<Producto> obtenerTodosLosProductos() {
                     producto.setDescripcion(rs.getString("descripcion"));
                     producto.setPrecio(rs.getDouble("precio"));
                     producto.setMarca(rs.getString("marca"));
+                    producto.setComtenido(rs.getString("contenido"));
+                    producto.setOrigen(rs.getString("origen"));
+                    producto.setTipo(rs.getString("tipo"));
                     producto.setCategoria(rs.getString("id_categoria"));
                 }
             }
@@ -104,7 +113,7 @@ public List<Producto> obtenerTodosLosProductos() {
 
     // Método para actualizar un producto existente
     public void actualizarProducto(Producto producto) {
-        String sql = "UPDATE Productos SET nombre_producto = ?, descripcion = ?, precio = ?, marca = ?, id_categoria = ? WHERE id_producto = ?";
+        String sql = "UPDATE Productos SET nombre_producto = ?, descripcion = ?, precio = ?, marca = ?, contenido = ?, origen = ?, tipo = ?, id_categoria = ? WHERE id_producto = ?";
         
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kglow", "root", "040405");
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -113,8 +122,11 @@ public List<Producto> obtenerTodosLosProductos() {
             ps.setString(2, producto.getDescripcion());
             ps.setDouble(3, producto.getPrecio());
             ps.setString(4, producto.getMarca());
-            ps.setString(5, producto.getCategoria());
-            ps.setInt(6, producto.getId_producto());
+            ps.setString(5, producto.getComtenido());
+            ps.setString(6, producto.getOrigen());
+            ps.setString(7, producto.getTipo());
+            ps.setString(8, producto.getCategoria());
+            ps.setInt(9, producto.getId_producto());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
