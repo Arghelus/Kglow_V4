@@ -174,17 +174,16 @@
         <div class="contact-informacion">
             <h2>Aquí estamos para ayudarte</h2>
             <p>Aquí encontrarás nuestros canales de atención para poder ayudarte.</p>
-            <img src="ImagenesInterface/osito-removebg-preview.png" alt="Osito" class="img-fluid"
-                        style="max-width: 350px;">
+            <img src="ImagenesInterface/osito-removebg-preview.png" alt="Osito" class="img-fluid" style="max-width: 350px;">
         </div>
         <div class="contact-form">
             <h3>Déjanos tu mensaje</h3>
-            <form id="contactForm">
-                <input type="text" id="name" placeholder="Nombre y apellidos" required>
-                <input type="email" id="email" placeholder="Correo electrónico" required>
-                <input type="tel" id="phone" placeholder="Teléfono">
-                <input type="text" id="subject" placeholder="Asunto">
-                <textarea id="message" placeholder="Mensaje" rows="4"></textarea>
+            <form id="contactForm" action="https://formsubmit.co/kglowmakeupstore@gmail.com" method="POST">
+                <input type="text" name="name" id="name" placeholder="Nombre y apellidos" required>
+                <input type="email" name="email" id="email" placeholder="Correo electrónico" required>
+                <input type="tel" name="phone" id="phone" placeholder="Teléfono">
+                <input type="text" name="subject" id="subject" placeholder="Asunto">
+                <textarea name="message" id="message" placeholder="Mensaje" rows="4"></textarea>
                 <div class="terms">
                     <input type="checkbox" id="terms" required>
                     <label>He leído y acepto la <a href="#" style="color: #c2185b;">política de protección de datos personales</a>.</label>
@@ -193,55 +192,57 @@
             </form>
         </div>
     </div>
-
+    
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Previene el envío del formulario estándar
-
-        // Captura los valores de los campos
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        const terms = document.getElementById('terms').checked;
-
-        // Verifica si el checkbox de términos está marcado
-        if (!terms) {
-            alert("Debes aceptar la política de protección de datos personales.");
-            return;
-        }
-
-        // Crea un objeto con los datos
-        const data = {
-            name: name,
-            email: email,
-            phone: phone,
-            subject: subject,
-            message: message
-        };
-
-        // Envía los datos usando fetch y AJAX (AQUIII EL APIII)
-        fetch('https://tuservidor.com/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Mensaje enviado con éxito.');
-            } else {
-                alert('Hubo un problema al enviar el mensaje.');
+            event.preventDefault(); // Previene el envío del formulario estándar
+    
+            // Captura los valores de los campos
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const terms = document.getElementById('terms').checked;
+    
+            // Verifica si el checkbox de términos está marcado
+            if (!terms) {
+                alert("Debes aceptar la política de protección de datos personales.");
+                return;
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al enviar el mensaje.');
+    
+            // Crea un objeto con los datos
+            const data = {
+                name: name,
+                email: email,
+                phone: phone,
+                subject: subject,
+                message: message
+            };
+    
+            // Envía los datos usando fetch y AJAX
+            fetch('https://formsubmit.co/kglowmakeupstore@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Mensaje enviado con éxito.');
+                    // Para limpiar el formulario
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('Hubo un problema al enviar el mensaje.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al enviar el mensaje.');
+            });
         });
-    });
     </script>
 
     <footer class="footer">
