@@ -144,18 +144,18 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3" id="listaProductos">
                     <!-- Tarjeta de Producto Ejemplo -->
                     <div class="col">
-                        <div class="card shadow-sm h-100 d-flex flex-column">
-                            <div class="overflow-hidden" style="height: 200px;">
-                                <img src="ImagenesInterface/productos/Rostro/Base_MarcaCLIO.png" class="card-img-top img-fluid" alt="Producto 1">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-marca">CLIO</h5>
-                                <h5 class="card-title">Base holly holly Pink</h5>
-                                <p class="card-text">S/ 59.99</p>
-                                <a href="#" class="K-btn">Detalles</a>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card shadow-sm h-100 d-flex flex-column">
+        <div class="overflow-hidden" style="height: 200px;">
+            <img src="ImagenesInterface/productos/Rostro/Base_MarcaCLIO.png" class="card-img-top img-fluid" alt="Producto 1">
+        </div>
+        <div class="card-body">
+            <h5 class="card-marca">CLIO</h5>
+            <h5 class="card-title">Base</h5>
+            <p class="card-text">S/ 59.99</p>
+            <a href="#" class="K-btn">Detalles</a>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -220,6 +220,38 @@
             </div>
         </div>
     </footer>
+<script>
+    // Función para filtrar los productos
+    function filtrarProductos() {
+        // Obtener los valores seleccionados en los filtros
+        const tipoProducto = document.getElementById('tipoProducto').value;
+        const precioMin = parseFloat(document.getElementById('precioMin').value) || 0;
+        const precioMax = parseFloat(document.getElementById('precioMax').value) || Infinity;
+        const marca = document.getElementById('marca').value;
+
+        // Obtener todas las tarjetas de productos
+        const productos = document.querySelectorAll('#listaProductos .col');
+
+        // Recorrer cada tarjeta y verificar si cumple con los criterios
+        productos.forEach((producto) => {
+            const productoTipo = producto.querySelector('.card-title').textContent.toLowerCase();
+            const productoPrecio = parseFloat(producto.querySelector('.card-text').textContent.replace('S/ ', ''));
+            const productoMarca = producto.querySelector('.card-marca').textContent.toLowerCase();
+
+            // Verificar si el producto cumple con los filtros
+            const cumpleTipo = tipoProducto === 'todos' || productoTipo.includes(tipoProducto);
+            const cumplePrecio = productoPrecio >= precioMin && productoPrecio <= precioMax;
+            const cumpleMarca = marca === 'todas' || productoMarca === marca.toLowerCase();
+
+            // Mostrar u ocultar el producto según cumpla los filtros
+            if (cumpleTipo && cumplePrecio && cumpleMarca) {
+                producto.style.display = 'block';
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    }
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
