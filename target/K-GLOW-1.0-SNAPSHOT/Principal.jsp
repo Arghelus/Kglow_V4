@@ -48,7 +48,7 @@
                             <i class="bi bi-person-circle" style="font-size: 2rem; color:white;"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="login.html">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="Login.jsp">Iniciar Sesion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,25 +66,25 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav ms-5 justify-content-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="index.html">TODO</a>
+                                <a class="nav-link mx-lg-2" href="Principal.jsp">TODO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="ojos.html">OJOS</a>
+                                <a class="nav-link mx-lg-2" href="Ojos.jsp">OJOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="rostro.html">ROSTRO</a>
+                                <a class="nav-link mx-lg-2" href="Rostro.jsp">ROSTRO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="labios.html">LABIOS</a>
+                                <a class="nav-link mx-lg-2" href="Labios.jsp">LABIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="servicios.html">SERVICIOS</a>
+                                <a class="nav-link mx-lg-2" href="Servicios.jsp">SERVICIOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="nosotros.html">NOSOTROS</a>
+                                <a class="nav-link mx-lg-2" href="Nosotros.jsp">NOSOTROS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-2" href="contacto.html">CONTACTO</a>
+                                <a class="nav-link mx-lg-2" href="Contacto.jsp">CONTACTO</a>
                             </li>
                         </ul>
                     </div>
@@ -199,6 +199,111 @@
             </div>
         </div>
     </div>
+    
+    <!-- Botón del chatbot -->
+    <div id="chat-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 10;">
+        <!-- Icono SVG del chatbot -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#866383" width="40" height="40" class="bi bi-robot" viewBox="0 0 16 16">
+            <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.6 26.6 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.93.93 0 0 1-.765.935c-.845.147-2.34.346-4.235.346s-3.39-.2-4.235-.346A.93.93 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a25 25 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25 25 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135"/>
+            <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5"/>
+        </svg>
+    </div>
+
+    <!-- Ventana del chatbot -->
+    <div id="chatbox" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; z-index: 10;">
+        <!-- Cabecera de la ventana del chatbot -->
+        <div style="background-color: #866383; color: white; padding: 10px; position: relative;">
+            <!-- Logo de la empresa -->
+            <img style="width: 150px; height: 30px;" src="ImagenesInterface/Glowy.png">
+            <!-- Botón de cerrar -->
+            <span id="close-chat" style="position: absolute; top: 5px; right: 10px; cursor: pointer;">&times;</span>
+        </div>
+
+        <!-- Contenido del chat -->
+        <div id="chat-content" style="padding: 10px; height: 300px; overflow-y: auto;">
+            <p>¡Hola! Soy Glowy, tu asistente virtual.</p>
+        </div>
+
+        <!-- Campo de entrada y botón de enviar -->
+        <input id="user-input" type="text" placeholder="Escribe tu mensaje..." style="width: 100%; padding: 8px; border: none; border-top: 1px solid #ddd;">
+        <button onclick="sendMessage()" style="width: 100%; background-color: #866383; color: white; border: none; padding: 10px;">Enviar</button>
+    </div>
+
+    <script>
+        // Muestra el chatbot al hacer clic en el icono
+        document.getElementById("chat-icon").addEventListener("click", function () {
+            document.getElementById("chatbox").style.display = "block";
+            document.getElementById("chat-icon").style.visibility = "hidden";
+        });
+
+        // Cierra el chatbot
+        document.getElementById("close-chat").addEventListener("click", function () {
+            document.getElementById("chatbox").style.display = "none";
+            document.getElementById("chat-icon").style.visibility = "visible";
+        });
+
+        // Envía el mensaje y muestra la respuesta del chatbot
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const chatContent = document.getElementById("chat-content");
+
+            // Mostrar mensaje del usuario
+            const userMessage = document.createElement("p");
+            userMessage.style.color = "blue";
+            userMessage.textContent = "Tú: " + userInput;
+            chatContent.appendChild(userMessage);
+
+            // Lógica para la respuesta del bot
+            const botResponse = getRespuesta(userInput);
+
+            // Mostrar respuesta del chatbot
+            const botMessage = document.createElement("p");
+            botMessage.textContent = "Glowy: " + botResponse;
+            chatContent.appendChild(botMessage);
+
+            // Limpiar el campo de entrada y hacer scroll hacia abajo
+            document.getElementById("user-input").value = "";
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        // Función que define las respuestas del chatbot
+        function getRespuesta(input) {
+            switch (input.toLowerCase()) {
+                case "hola":
+                    return "¡Hola! ¿En qué puedo ayudarte hoy?\n" +
+                            "1. Productos\n" +
+                            "2. Horarios\n" +
+                            "3. Redes sociales\n" +
+                            "4. Otras consultas\n" +
+                            "5. Cita para maquillajes";
+
+                case "1":
+                    return "Información sobre productos: Aquí puedes encontrar detalles sobre nuestros productos.";
+
+                case "2":
+                    return "Información sobre horarios: Nuestros horarios son de 9 AM a 6 PM de lunes a viernes.";
+
+                case "3":
+                    return "Redes sociales: Síguenos en Facebook, Twitter e Instagram para las últimas novedades.";
+
+                case "4":
+                    return "Para hablar con un asesor en vivo, por favor, visita el siguiente enlace: [Enlace al chat en vivo]";
+
+                case "5":
+                    return "Cita para maquillajes: Para agendar una cita de maquillaje, por favor visita nuestra sección de citas en la página web.";
+
+                case "gracias":
+                    return "¡De nada! 😊 Si necesitas más ayuda, estaré aquí.";
+
+                case "adios":
+                    return "¡Hasta pronto! 👋 Espero haberte sido de ayuda.";
+
+                default:
+                    return "Opción no válida. Por favor, selecciona una opción del 1 al 5.";
+            }
+        }
+    </script>
+    
     <footer class="footer">
         <div class="container-footer">
             <div class="menu-footer">
@@ -238,7 +343,6 @@
                         <li><a href="#">Protección de datos</a></li>
                         <li><a href="#">Cambios y devoluciones</a></li>
                         <li><a href="#">Plazos de reembolso</a></li>
-                        <li><a href="#">Acumulación de puntos</a></li>
                         <li><a href="#">Campañas publicitarias</a></li>
                     </ul>
                 </div>
@@ -250,7 +354,6 @@
                         <li><a href="#">Historial de órdenes</a></li>
                         <li><a href="#">Lista de deseos</a></li>
                         <li><a href="#">Seguimiento de Pedidos</a></li>
-                        <li><a href="#">Consulta de Puntos</a></li>
                     </ul>
                 </div>
             </div>

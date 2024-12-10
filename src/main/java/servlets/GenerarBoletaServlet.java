@@ -26,8 +26,8 @@ public class GenerarBoletaServlet extends HttpServlet {
             boleta.setIgv(36.0);
             boleta.setTotal(236.0);
             boleta.setProductos(List.of(
-                    new Producto("Laptop", "Core i7, 16GB RAM", 2000.0, "https://example.com/laptop.jpg"),
-                    new Producto("Mouse", "Ergonómico", 50.0, "https://example.com/mouse.jpg")
+                    new Producto("Labial", "Rojo Tomate", 20.0, "https://media.vogue.mx/photos/5dc9dc9ab9285b0009b3a80a/master/w_1600%2Cc_limit/d-delight-dior-lipstick.jpg"),
+                    new Producto("Base", "Color Marron", 50.0, "https://www.agenciasmotta.com/web/image/product.template/6141/image_1024?unique=096704f")
             ));
 
             // Genera el PDF
@@ -54,8 +54,8 @@ public class GenerarBoletaServlet extends HttpServlet {
 
             // Simulación de productos para la boleta
             List<Producto> productos = List.of(
-                    new Producto("Laptop", "Core i7, 16GB RAM", 2000.0, "https://example.com/laptop.jpg"),
-                    new Producto("Mouse", "Ergonómico", 50.0, "https://example.com/mouse.jpg")
+                    new Producto("Labial", "Rojo Tomate", 20.0, "https://media.vogue.mx/photos/5dc9dc9ab9285b0009b3a80a/master/w_1600%2Cc_limit/d-delight-dior-lipstick.jpg"),
+                    new Producto("Base", "Color Marron", 50.0, "https://www.agenciasmotta.com/web/image/product.template/6141/image_1024?unique=096704f")
             );
 
             // Cálculo de totales
