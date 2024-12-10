@@ -187,7 +187,7 @@
                 <textarea id="message" placeholder="Mensaje" rows="4"></textarea>
                 <div class="terms">
                     <input type="checkbox" id="terms" required>
-                    <label>He leído y acepto la <a href="#" style="color: #c2185b;">política de protección de datos personales</a>.</label>
+                    <label>He leído y acepto la <a href="Politicas.jsp" style="color: #c2185b;">política de protección de datos personales</a>.</label>
                 </div>
                 <button type="submit">Enviar</button>
             </form>
@@ -252,7 +252,7 @@
                     <ul>
                         <li>Dirección legal: Av. La Marina 2355, San Miguel, Lima</li>
                         <li>RUC: 20548796321</li>
-                        <li>Email: kglow@support.com</li>
+                        <li>Email: airtonrodro18@gmail.com</li>
                         <li>Teléfono: +51 934553657</li>
                     </ul>
 

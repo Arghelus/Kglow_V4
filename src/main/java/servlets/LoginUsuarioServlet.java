@@ -5,6 +5,7 @@
 package servlets;
 
 import Logica.DAO.UsuarioDAO;
+import Logica.PasswordUtils;
 import Logica.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,34 +30,35 @@ public class LoginUsuarioServlet extends HttpServlet {
     String contrasenia = request.getParameter("password");
     
     // Verificación de obtención de datos
-    System.out.println(correo);
-    System.out.println(contrasenia);
+    System.out.println("Correo ingresado: " + correo);
+    System.out.println("Contraseña ingresada: " + contrasenia);
     System.out.println("=================================================================================");
 
     // Crear el objeto Usuario con los datos del formulario
     Usuario usuario = new Usuario();
     usuario.setCorreo(correo);
-    usuario.setContrasenia(contrasenia);
     
     // Instanciar UsuarioDAO y llamar al método loguearUsuario
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     Usuario usuarioLogueado = usuarioDAO.LoguearUsuario(usuario);
     
-    if (usuarioLogueado != null) { // Verifica si el usuario fue encontrado
-        // Obtener el rol del usuario
+        if (usuarioLogueado != null && PasswordUtils.checkPassword(contrasenia, usuarioLogueado.getContrasenia())) { // Verifica si el usuario fue encontrado
+            // Obtener el rol del usuario
             String tipoUsuario = usuarioLogueado.getTipoRol();
+            System.out.println("Hash en la base de datos: " + usuarioLogueado.getContrasenia());
 
             // Redirigir según el tipo de usuario
             if ("Administrador".equalsIgnoreCase(tipoUsuario)) {
-                response.sendRedirect(request.getContextPath() + "/Interface/AdminPrincipal.jsp");
+                response.sendRedirect(request.getContextPath() + "/Interface/Login.jsp");
             } else if ("Cliente".equalsIgnoreCase(tipoUsuario)) {
                 response.sendRedirect(request.getContextPath() + "/Interface/Principal.jsp");
-            } 
-    } else {
-        // Redirigir al registro si no se encontró al usuario
-        response.sendRedirect(request.getContextPath() + "/Interface/Register.jsp");
+            }
+        } else {
+            // Redirigir al registro si no se encontró al usuario
+            System.out.println("Usuario no encontrado o contraseña incorrecta.");
+            response.sendRedirect(request.getContextPath() + "/Interface/Login.jsp");
+        }
     }
-}
 
     
     @Override

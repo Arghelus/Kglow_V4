@@ -132,7 +132,7 @@
                             <!-- Columna del texto -->
                             <div class="col-md-6">
                                 <span>No tienes cuenta? <a href="Register.jsp">Registrate</a></span><br>
-                                <span><a href="#">Recuperar Contraseña</a></span>
+                                <span><a href="recuperar.jsp">Recuperar Contraseña</a></span>
                             </div>
                             <!-- Columna del botón -->
                             <div class="col-md-6 text-end">
@@ -150,44 +150,7 @@
                                 <img src="ImagenesInterface/osito.png" alt="Imagen de Inicio de Sesión" class="img-fluid"
                                     style="max-height: 300px;">
                             </div>
-
                             <!-- Columna vacía -->
-
-
-                            <!-- Columna del formulario de inicio de sesión -->
-                            <div class="col-md-6">
-                                <div class="row text-end">
-                                    <div class="col-12">Inicia sesión usando:</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="d-flex justify-content-end">
-                                            <button class="btn btn-primary my-1 w-75">
-                                                <div class="row align-items-center">
-                                                    <div class="col-2 d-none d-md-block">
-                                                        <i class="bi bi-facebook"></i>
-                                                    </div>
-                                                    <div class="col-12 col-md-10 text-center">
-                                                        Facebook
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button class="btn btn-danger my-1 w-75">
-                                                <div class="row align-items-center">
-                                                    <div class="col-2 d-none d-md-block">
-                                                        <i class="bi bi-google"></i>
-                                                    </div>
-                                                    <div class="col-12 col-md-10 text-center">
-                                                        Google
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 

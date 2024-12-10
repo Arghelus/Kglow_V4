@@ -4,12 +4,13 @@
   <persistence-unit name="K-GLOW_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Logica.Usuario</class>
-    <class>Logica.Carrito</class>
     <class>Logica.Comprobante</class>
     <class>Logica.Envio</class>
     <class>Logica.Login</class>
     <class>Logica.Producto</class>
     <class>Logica.Venta</class>
+    <class>Logica.PasswordUtils</class>
+    <class>Logica.CarritoClase</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/KGLOW?serverTimezone=UTC"/>

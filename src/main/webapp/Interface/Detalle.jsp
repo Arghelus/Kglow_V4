@@ -1,9 +1,6 @@
-<%-- 
-    Document   : Detalle
-    Created on : 14 nov. 2024, 03:06:37
-    Author     : Crhist
---%>
-
+<%@page import="java.util.List"%>
+<%@page import="Logica.Producto"%>
+<%@page import="Logica.DAO.ProductoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,7 +175,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="salirUser.php">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="Carrito.jsp">Carrito</a></li>
                             <li><a class="dropdown-item" href="salirUser.php">Cerrar Sesión</a></li>
                         </ul>
                     </div>
@@ -240,24 +237,35 @@
     <div class="container w-75">
         <div class="row align-items-stretch shadow rounded">
             <div class="product-gallery col">
-                <div class="thumbnails">
-                    <img src="ImagenesInterface/productos/labios/gloss_MarcaPeriPera.png" 
-                         onclick="showImage('ImagenesInterface/productos/labios/gloss_MarcaPeriPera.png')" alt="Thumbnail 1">
-                    <img src="ImagenesInterface/productos/Labios/gloss_MarcaRom&nd.png" 
-                         onclick="showImage('ImagenesInterface/productos/Labios/gloss_MarcaRom&nd.png')" alt="Thumbnail 2">
-                    <img src="ImagenesInterface/productos/labios/hidratante_MarcaInnisFree.png" 
-                         onclick="showImage('ImagenesInterface/productos/labios/hidratante_MarcaInnisFree.png')" alt="Thumbnail 3">
+                <div class="thumbnails"> <%
+                             String idProducto = request.getParameter("id_producto");
+                             ProductoDAO productoDAO = new ProductoDAO();
+                             Producto productoSeleccionado = productoDAO.obtenerProductoPorId(Integer.parseInt(idProducto));
+
+                             if (productoSeleccionado == null) {
+                         %>
+                         <h1>Producto no encontrado</h1>
+                         <%
+                         } else {
+                         %>
+                    <img src="ImagenesInterface/productos/<%= productoSeleccionado.getCategoria().toLowerCase()%>/<%= productoSeleccionado.getNombre_producto().toLowerCase().replaceAll(" ", "_")%>.png" 
+                         alt="<%= productoSeleccionado.getNombre_producto()%>">
                 </div>
                 <div class="main-image">
-                    <img id="displayedImage" src="ImagenesInterface/productos/labios/gloss_MarcaPeriPera.png" alt="Main Product Image">
+                    <img src="ImagenesInterface/productos/<%= productoSeleccionado.getCategoria().toLowerCase()%>/<%= productoSeleccionado.getNombre_producto().toLowerCase().replaceAll(" ", "_")%>.png" alt="<%= productoSeleccionado.getNombre_producto()%>">
                 </div>
             </div>
             <div class="col rounded-end p-5 Help">
-                <h1 style="font-size: 2rem; font-weight: bold; color: rgb(78, 14, 14);">GLOSS PARA LABIOS</h1> <!-- Nombre de ejemplo -->
+                
+                <h1 style="font-size: 2rem; font-weight: bold; color: rgb(78, 14, 14);"><%= productoSeleccionado.getNombre_producto()%></h1>
+                
                 <hr>
-                <p >Gloss hidratante ligero de larga duración</p><!-- Descripción de ejemplo -->
+                <p><%= productoSeleccionado.getDescripcion() %></p><!-- Descripción de ejemplo -->
                 <div class="d-flex align-items-center">
-                    <div class="price-box">s/50</div> <!-- Precio de ejemplo -->
+                    <div class="price-box">Precio: S/ <%= productoSeleccionado.getPrecio()%></div>
+                    <%
+                        }
+                    %>
                     <img src="ImagenesInterface/MetodosPago.png" alt="Métodos de pago" style="max-height: 70px; margin-left: 10px;"> <!-- Imagen de métodos de pago -->
                 </div>
                 <div class="my-3">
@@ -273,7 +281,7 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <p id="stock-general-info">Stock:</p>
+                    <p id="stock-general-info">Stock: 10</p>
                 </div>
                 <div class="my-3 d-flex align-items-center">
                     <!--Contenedor Cantidad a Añadir-->
@@ -317,15 +325,15 @@
                         </thead>
                         <tbody class="table-group-divider">
                             <tr>
-                                <th scope="row">Marca</th>
+                                <th scope="row">Marca: <%= productoSeleccionado.getMarca()%></th>
                                 <td><!-- Aquí se pone algo así: ?php echo $marca; --></td>
                             </tr>
                             <tr>
-                                <th scope="row">Contenido</th>
+                                <th scope="row">Contenido: <%= productoSeleccionado.getComtenido()%></th>
                                 <td><!-- Aquí se pone algo así --></td>
                             </tr>
                             <tr>
-                                <th scope="row">Origen</th> 
+                                <th scope="row">Origen: <%= productoSeleccionado.getOrigen()%></th> 
                                 <td></td>
                             </tr>
                         </tbody>
@@ -349,80 +357,26 @@
                     </svg>
                 </button>
             </div>
-            
-            <div class="col-10">
-                <div class="paginasocial d-flex" id="carouselContainer" style="overflow: hidden;">
+            <%
+                List<Producto> productosRecomendados = productoDAO.obtenerProductosPorCategoria(productoSeleccionado.getCategoria());
 
-                    <div class="elemento col mb-5 productos" style="min-width: 250px; max-width: 300px;">
-                        <div class="card shadow-sm h-100 d-flex flex-column">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <img src="ImagenesInterface/productos/Labios/gloss_MarcaPeriPera.png" class="card-img-top img-fluid h-100" alt="labiales" style="object-fit: cover; width: 100%; height: 200px;">
-                            </div>
-                            <div class="card-body flex-grow-0">
-                                <h5 class="card-title">Gloss Sparkles</h5>
-                                <p class="card-text">S/.19.99</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="K-btn">Detalles</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                for (Producto recomendado : productosRecomendados) {
+            %>
+            <div class="col">
+                <div class="card shadow-sm h-100 d-flex flex-column">
+                    <div class="overflow-hidden" style="height: 200px;">
+                        <img src="ImagenesInterface/productos/<%= recomendado.getCategoria().toLowerCase()%>/<%= recomendado.getNombre_producto().toLowerCase().replaceAll(" ", "_")%>.png" class="card-img-top img-fluid" alt="<%= recomendado.getNombre_producto()%>">
                     </div>
-
-                    <div class="elemento col mb-5 productos" style="min-width: 250px; max-width: 300px;">
-                        <div class="card shadow-sm h-100 d-flex flex-column">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <img src="ImagenesInterface/productos/Labios/gloss_MarcaRom&nd.png" class="card-img-top img-fluid h-100" alt="labiales" style="object-fit: cover; width: 100%; height: 200px;">
-                            </div>
-                            <div class="card-body flex-grow-0">
-                                <h5 class="card-title">Labial Mate</h5>
-                                <p class="card-text">S/.29.99</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="K-btn">Detalles</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="elemento col mb-5 productos" style="min-width: 250px; max-width: 300px;">
-                        <div class="card shadow-sm h-100 d-flex flex-column">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <img src="ImagenesInterface/productos/Labios/hidratante_MarcaInnisFree.png" class="card-img-top img-fluid h-100" alt="Producto 3" style="object-fit: cover; width: 100%; height: 200px;">
-                            </div>
-                            <div class="card-body flex-grow-0">
-                                <h5 class="card-title">Producto 3</h5>
-                                <p class="card-text">S/.39.99</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="K-btn">Detalles</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="elemento col mb-5 productos" style="min-width: 250px; max-width: 300px;">
-                        <div class="card shadow-sm h-100 d-flex flex-column">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <img src="ImagenesInterface/productos/Labios/labialBarra_MarcaFlowerKnows.png" class="card-img-top img-fluid h-100" alt="Producto 3" style="object-fit: cover; width: 100%; height: 200px;">
-                            </div>
-                            <div class="card-body flex-grow-0">
-                                <h5 class="card-title">Producto 4</h5>
-                                <p class="card-text">S/.39.99</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="K-btn">Detalles</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= recomendado.getNombre_producto()%></h5>
+                        <p class="card-text">S/ <%= recomendado.getPrecio()%></p>
+                        <a href="Detalle.jsp?id_producto=<%= recomendado.getId_producto()%>" class="K-btn">Detalles</a>
                     </div>
                 </div>
             </div>
-            
+            <%
+                }
+            %>
             <div class="col-1 d-flex align-items-center">
                 <button id="nextBtn" class="K-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">

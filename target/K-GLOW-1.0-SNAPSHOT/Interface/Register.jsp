@@ -175,7 +175,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password" required maxlength="8">
+                            <input type="password" class="form-control" name="password" id="password" required minlength="8" maxlength="20" >
                             <div class="invalid-feedback">
                                 La contraseña debe tener entre 8 y 20 caracteres, contener unicamente letras y números.
                             </div>
@@ -197,43 +197,7 @@
                         <div class="my-3">
                             <span>Ya tengo cuenta. <a href="Login.jsp">Iniciar sesión.</a></span><br>
                         </div>
-
                     </form>
-                        
-                    <!--LOgin con Redes Sociales-->
-                    <div class="container w-100 my-5">
-                        <div class="row text-center">
-                            <div class="col-12">Registrarse usando:</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-primary w-100 my-1">
-                                    <div class="row align-items-center">
-                                        <div class="col-2 d-none d-md-block">
-                                            <i class="bi bi-facebook"></i>
-                                        </div>
-                                        <div class="col-12 col-md-10 text-center">
-                                            Facebook
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-danger w-100 my-1">
-                                    <div class="row align-items-center">
-                                        <div class="col-2 d-none d-md-block">
-                                            <i class="bi bi-google"></i>
-                                        </div>
-                                        <div class="col-12 col-md-10 text-center">
-                                            Google
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
                 <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded-start"></div>
                 <!-- Imagen de labiales-->

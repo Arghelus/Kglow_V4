@@ -4,7 +4,20 @@
     Author     : Crhist
 --%>
 
+<%@page import="Logica.Producto"%>
+<%@page import="java.util.List"%>
+<%@page import="Logica.DAO.ProductoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    ProductoDAO productoDAO = new ProductoDAO();
+    List<Producto> productosCarrito = productoDAO.obtenerProductosDelCarrito();
+    double subtotal = 0.0;
+    for (Producto producto : productosCarrito) {
+        subtotal += producto.getPrecio();
+    }
+    double descuento = 20.0; // Ejemplo de descuento fijo
+    double total = subtotal - descuento;
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +188,7 @@
 
         <div class="container my-5">
         <div class="d-flex align-items-center mb-4">
-            <a href="index.html" class="me-3" style="color: gray;"><i class="bi bi-arrow-left"></i> Volver al Inicio</a>
+            <a href="Principal.jsp" class="me-3" style="color: gray;"><i class="bi bi-arrow-left"></i> Volver al Inicio</a>
         </div>
 
         <div class="d-flex align-items-center" style="color: rgb(78, 14, 14);">
@@ -199,18 +212,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="product-row" style="vertical-align: center;">
-                        <td><img src="ImagenesInterface/productos/Rostro/Base_MarcaTIRTIR.png" alt="Producto" class="product-image"></td>
-                        <td class="product-name">Peripera Ink Mood Glowy Tint Peritage</td>
-                        <td><input type="number" class="form-control w-75 mx-auto" value="10" min="1"></td>
-                        <td class="price">S/. 35.00</td>
-                        <td class="total">S/. 70.00</td>
-                        <td class="remove-btn"><button class="btn btn-danger">ELIMINAR</button></td>
+                    dy>
+                    <%
+                        if (productosCarrito != null && !productosCarrito.isEmpty()) {
+                            for (Producto producto : productosCarrito) {
+                    %>
+                    <tr class="product-row">
+                        <td>
+                            <img src="ImagenesInterface/productos/" alt="<%= producto.getNombre_producto()%>" class="product-image">
+                        </td>
+                        <td><%= producto.getNombre_producto()%></td>
+                        <td>
+                            <input type="number" class="form-control w-75 mx-auto" value="1" min="1">
+                        </td>
+                        <td>S/. <%= producto.getPrecio() %></td>
+                        <td>S/. <%= producto.getPrecio() %></td>
+                        <td>
+                            <button class="btn btn-danger">ELIMINAR</button>
+                        </td>
                     </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="6" class="text-center">El carrito está vacío</td>
+                    </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
-
 
         <!-- Sección de descuento y totales alineados -->
         <div class="discount-total-container mt-4">
@@ -224,25 +257,26 @@
             </div>
 
             <!-- Sección de totales -->
+            
             <div class="totals-section w-50 ms-3">
                 <div class="d-flex justify-content-between">
                     <p>Subtotal:</p>
-                    <p>S/. 161.98</p>
+                    <p>S/. <%= subtotal %></p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Descuento:</p>
-                    <p>S/. 21.00</p>
+                    <p>S/. <%= descuento %></p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Total:</p>
-                    <p>S/. 140.98</p>
+                    <p>S/. <%= total %></p>
                 </div>
             </div>
         </div>
 
         <!-- Botón para proceder al pago alineado a la derecha -->
         <div class="text-end mt-4">
-            <a href="pago.html" class="checkout-btn">IR A PAGAR</a>
+            <a href="Pago.jsp" class="checkout-btn">IR A PAGAR</a>
         </div>
     </div>
 

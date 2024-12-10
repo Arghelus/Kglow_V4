@@ -113,9 +113,9 @@
                     <label class="form-label">Tipo de Producto</label>
                     <select class="form-select" id="tipoProducto">
                         <option value="todos">Todos</option>
-                        <option value="base">Base</option>
-                        <option value="corrector">Corrector</option>
-                        <option value="rubor">Rubor</option>
+                        <option value="base">Sombra</option>
+                        <option value="corrector">Delineador</option>
+                        <option value="rubor">Mascara para pestañas</option>
                     </select>
                 </div>
 
@@ -237,6 +237,38 @@
         </div>
     </footer>
 <script src="assets/js/login-register.js"></script>
+<script>
+    // Función para filtrar los productos
+    function filtrarProductos() {
+        // Obtener los valores seleccionados en los filtros
+        const tipoProducto = document.getElementById('tipoProducto').value;
+        const precioMin = parseFloat(document.getElementById('precioMin').value) || 0;
+        const precioMax = parseFloat(document.getElementById('precioMax').value) || Infinity;
+        const marca = document.getElementById('marca').value;
+
+        // Obtener todas las tarjetas de productos
+        const productos = document.querySelectorAll('#listaProductos .col');
+
+        // Recorrer cada tarjeta y verificar si cumple con los criterios
+        productos.forEach((producto) => {
+            const productoTipo = producto.querySelector('.card-title').textContent.toLowerCase();
+            const productoPrecio = parseFloat(producto.querySelector('.card-text').textContent.replace('S/ ', ''));
+            const productoMarca = producto.querySelector('.card-marca').textContent.toLowerCase();
+
+            // Verificar si el producto cumple con los filtros
+            const cumpleTipo = tipoProducto === 'todos' || productoTipo.includes(tipoProducto);
+            const cumplePrecio = productoPrecio >= precioMin && productoPrecio <= precioMax;
+            const cumpleMarca = marca === 'todas' || productoMarca === marca.toLowerCase();
+
+            // Mostrar u ocultar el producto según cumpla los filtros
+            if (cumpleTipo && cumplePrecio && cumpleMarca) {
+                producto.style.display = 'block';
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    }
+                    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Solo carga el script de Instagram una vez -->
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>

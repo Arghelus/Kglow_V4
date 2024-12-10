@@ -2,6 +2,7 @@ package servlets;
 
 import Logica.Usuario;
 import Logica.DAO.UsuarioDAO;
+import Logica.PasswordUtils;
 import Logica.UsuarioService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,12 +25,16 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         String celular = request.getParameter("celular");  // Cambiado
         String direccion = request.getParameter("direccion");  // Correcto
         
+         // Hash de la contraseña usando PasswordUtils
+        String hashedPassword = PasswordUtils.hashPassword(contrasenia);
+
         //verificacion de obtencion de datos
         System.out.println(nombre);
         System.out.println(apellido);
         System.out.println(correo);
-        System.out.println("=================================================================================");
-        Usuario usuario = new Usuario(nombre, apellido, correo, contrasenia, celular, direccion, "Cliente");
+        System.out.println("================================================================================="); 
+        // Crear el objeto Usuario con la contraseña hasheada
+        Usuario usuario = new Usuario(nombre, apellido, correo, hashedPassword, celular, direccion, "Cliente");
         System.out.println(usuario);
 
         
