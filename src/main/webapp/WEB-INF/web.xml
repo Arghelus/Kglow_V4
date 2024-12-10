@@ -47,4 +47,13 @@
         <servlet-name>RegistrarDatosEnvioServlet</servlet-name>
         <url-pattern>/RegistrarDatosEnvioServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GenerarBoletaServlet</servlet-name>
+        <servlet-class>servlets.GenerarBoletaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenerarBoletaServlet</servlet-name>
+        <url-pattern>/GenerarPDF</url-pattern>
+    </servlet-mapping>
 </web-app>
