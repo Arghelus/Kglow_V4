@@ -5,6 +5,7 @@ com\mycompany\k\glow\resources\JakartaEE8Resource.class
 com\mycompany\k\glow\JakartaRestConfiguration.class
 Logica\DAO\ListaDeseosDAO.class
 Logica\Venta_.class
+<<<<<<< HEAD
 Logica\DAO\DetalleCarritoDAO.class
 Logica\CarritoDeCompras.class
 Logica\PasswordUtils.class
@@ -20,18 +21,37 @@ Logica\CarritoDeCompras$Producto.class
 Logica\Envio_.class
 Logica\DAO\LoginDao.class
 Logica\DAO\ChatBotDAO.class
+=======
+Logica\Carrito_.class
+persistencia\exceptions\PreexistingEntityException.class
+Logica\Devolucion.class
+persistencia\exceptions\IllegalOrphanException.class
+Logica\Usuario.class
+servlets\RegistrarDatosEnvioServlet.class
+Logica\Envio_.class
+Logica\DAO\LoginDao.class
+Logica\DAO\ChatBotDAO.class
+Logica\Carrito.class
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 Logica\chatbotm.class
 Logica\vista$1.class
 servlets\RegistrarUsuarioServlet.class
 Logica\Venta.class
 persistencia\exceptions\NonexistentEntityException.class
 Logica\Factura_.class
+<<<<<<< HEAD
 servlets\EditarProductoServlet.class
 servlets\EliminarProductoServlet.class
 Logica\Controladora.class
 Logica\vista.class
 Logica\vista$3.class
 Logica\CarritoClase_.class
+=======
+Logica\chatbotc.class
+Logica\Controladora.class
+Logica\vista.class
+Logica\vista$3.class
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 Logica\Login_.class
 Logica\Conexion.class
 Logica\Categoria.class
@@ -41,24 +61,37 @@ servlets\ListaProductosServlet.class
 Logica\CarritoService.class
 Logica\DAO\CarritoDAO.class
 Logica\Producto_.class
+<<<<<<< HEAD
 servlets\MensajeEnviado.class
+=======
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 persistencia\ControladoraPersistencia.class
 Logica\InstagramC.class
 Logica\Boleta.class
 Logica\ListaDeseos.class
 Logica\vista$2.class
+<<<<<<< HEAD
 Logica\DAO\TokenDAO.class
 Logica\Usuario_.class
 Logica\UsuarioService.class
 Logica\InstagramM.class
 servlets\CarritoUsuarioServlet.class
+=======
+Logica\Usuario_.class
+Logica\UsuarioService.class
+Logica\InstagramM.class
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 servlets\LoginUsuarioServlet.class
 Logica\Producto.class
 servlets\ListaUsuariosServlet.class
 Logica\ProductoVariante.class
+<<<<<<< HEAD
 Logica\CarritoClase.class
 servlets\CatalogoServlet.class
 servlets\RestablecerContraseñaServlet.class
+=======
+servlets\CatalogoServlet.class
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 Logica\Envio.class
 Logica\Factura.class
 Logica\DAO\UsuarioDAO.class

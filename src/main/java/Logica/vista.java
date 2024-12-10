@@ -8,6 +8,10 @@
  */
 package Logica;
 
+<<<<<<< HEAD
+=======
+import Logica.chatbotc;
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
@@ -16,6 +20,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+<<<<<<< HEAD
+=======
+import Logica.chatbotm;
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 
 /**
  *
@@ -142,7 +150,10 @@ public class vista extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+<<<<<<< HEAD
         //</editor-fold>
+=======
+>>>>>>> 9918856158a85743b0ca4106a7d94d92ec041d3a
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
